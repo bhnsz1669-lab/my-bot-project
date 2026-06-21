@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Matcha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Vazirmatn',-apple-system,sans-serif;color:#fff;min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;background:#06080f}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%{transform:scale(1);opacity:.35}100%{transform:scale(1.7);opacity:0}}
+@keyframes sparkle{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}
+@keyframes grad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes shine{0%{left:-100%}100%{left:200%}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes ringS{to{transform:rotate(360deg)}}
+@keyframes dotB{0%,80%,100%{transform:translateY(0);opacity:.3}40%{transform:translateY(-7px);opacity:1}}
+@keyframes pShimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes checkPop{0%{transform:scale(0)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes badgePop{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
+@keyframes pF1{0%{transform:translate(0,0);opacity:0}15%{opacity:.7}85%{opacity:.7}100%{transform:translate(20px,-100px);opacity:0}}
+@keyframes pF2{0%{transform:translate(0,0);opacity:0}15%{opacity:.6}85%{opacity:.6}100%{transform:translate(-25px,-90px);opacity:0}}
+@keyframes pF3{0%{transform:translate(0,0);opacity:0}15%{opacity:.5}85%{opacity:.5}100%{transform:translate(15px,-110px);opacity:0}}
+
+.bg{position:fixed;inset:0;z-index:0;background:#06080f}
+.bg-g1{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(52,199,89,.12),transparent 70%);top:10%;left:10%;animation:float 8s ease-in-out infinite}
+.bg-g2{position:absolute;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(102,126,234,.1),transparent 70%);bottom:20%;right:5%;animation:float 10s ease-in-out infinite 2s}
+.bg-g3{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(175,82,222,.08),transparent 70%);top:50%;left:50%;animation:float 12s ease-in-out infinite 4s}
+
+.px{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.pp{position:absolute;border-radius:50%;will-change:transform,opacity}
+.pp.a{background:rgba(52,199,89,.5);width:3px;height:3px}
+.pp.b{background:rgba(102,126,234,.4);width:2px;height:2px}
+.pp.c{background:rgba(175,82,222,.35);width:2px;height:2px}
+.pp:nth-child(3n+1){animation:pF1 6s ease-in-out infinite}
+.pp:nth-child(3n+2){animation:pF2 7s ease-in-out infinite}
+.pp:nth-child(3n){animation:pF3 8s ease-in-out infinite}
+
+.prog{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.03);z-index:1000}
+.prog-fill{height:100%;background:linear-gradient(90deg,#34c759,#667eea,#34c759);background-size:200% 100%;animation:pShimmer 2s linear infinite;border-radius:0 2px 2px 0;transition:width .4s ease;width:0}
+
+.wrap{position:relative;z-index:1;max-width:380px;margin:0 auto;padding:28px 18px 24px;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center}
+
+.card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:22px 18px;box-shadow:0 8px 32px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08)}
+
+.card-hdr{display:flex;align-items:center;gap:14px;margin-bottom:20px;animation:slideRight .5s ease both}
+.card-hdr-ic{position:relative;width:50px;height:50px;flex-shrink:0;animation:float 4s ease-in-out infinite}
+.card-hdr-img{width:50px;height:50px;border-radius:14px;overflow:hidden;background:transparent}
+.card-hdr-img img{width:100%;height:100%;object-fit:contain;display:block}
+.card-hdr-txt h1{font-size:1.1rem;font-weight:800;background:linear-gradient(135deg,#fff,rgba(255,255,255,.65));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.4;margin-bottom:2px}
+.card-hdr-txt p{font-size:.74rem;color:rgba(255,255,255,.35);line-height:1.5}
+
+.attract{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:18px;animation:up .4s ease .1s both}
+.atr-badge{display:flex;align-items:center;gap:4px;padding:6px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:20px;font-size:.68rem;color:rgba(255,255,255,.5);font-weight:500;animation:badgePop .4s ease both}
+.atr-badge:nth-child(1){animation-delay:.15s}
+.atr-badge:nth-child(2){animation-delay:.25s}
+.atr-badge:nth-child(3){animation-delay:.35s}
+.atr-badge svg{width:13px;height:13px;flex-shrink:0}
+
+.av-sec{display:flex;justify-content:center;margin-bottom:16px}
+.av-wrap{position:relative;width:80px;height:80px}
+.av-ring{position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(from 0deg,#34c759,#667eea,#af52de,#f093fb,#34c759);background-size:100% 100%;animation:grad 4s ease infinite;opacity:.3;transition:opacity .3s}
+.av-wrap:hover .av-ring{opacity:.7}
+.av-circle{width:80px;height:80px;border-radius:50%;overflow:hidden;background:rgba(255,255,255,.04);position:relative;z-index:1;display:flex;align-items:center;justify-content:center;border:3px solid #080a12;cursor:pointer}
+.av-circle img{width:100%;height:100%;object-fit:cover;display:none}
+.av-circle img.show{display:block}
+.av-ph{display:flex;flex-direction:column;align-items:center;gap:2px}
+.av-ph svg{width:22px;height:22px;fill:rgba(255,255,255,.12)}
+.av-ph span{font-size:.55rem;color:rgba(255,255,255,.18)}
+.av-cam{position:absolute;bottom:-1px;left:-1px;width:26px;height:26px;background:linear-gradient(135deg,#34c759,#059669);border:3px solid #080a12;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;cursor:pointer}
+.av-cam svg{width:11px;height:11px;fill:#fff}
+
+.fields{display:flex;flex-direction:column;gap:10px}
+
+.field-box{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:14px;padding:13px 15px;transition:border-color .2s,box-shadow .2s;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.field-box:focus-within{border-color:rgba(52,199,89,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 0 0 3px rgba(52,199,89,.1)}
+.field-box.has-error{border-color:rgba(255,59,48,.5);box-shadow:0 0 0 3px rgba(255,59,48,.08)}
+.field-box.verified{border-color:rgba(52,199,89,.45);box-shadow:0 0 0 3px rgba(52,199,89,.06)}
+.field-head{display:flex;align-items:center;gap:5px;margin-bottom:6px}
+.field-ic{width:14px;height:14px;stroke:rgba(255,255,255,.3);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:stroke .2s}
+.field-box:focus-within .field-ic{stroke:rgba(52,199,89,.7)}
+.field-box.verified .field-ic{stroke:#34c759}
+.field-box.has-error .field-ic{stroke:rgba(255,59,48,.7)}
+.field-head label{font-size:.68rem;color:rgba(255,255,255,.4);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.field-box input{width:100%;background:transparent;border:none;outline:none;font-size:.95rem;font-family:inherit;color:#fff;padding:1px 0}
+.field-box input::placeholder{color:rgba(255,255,255,.2)}
+.field-box input[type=tel]{direction:ltr;text-align:left;font-variant-numeric:tabular-nums;letter-spacing:.4px}
+.msg-err{font-size:.65rem;margin-top:5px;font-weight:500;color:#ff3b30;display:none}
+.msg-err.show{display:block}
+.msg-ok{font-size:.65rem;margin-top:5px;font-weight:500;color:#34c759;display:none}
+.msg-ok.show{display:block}
+.uname-row{display:flex;align-items:center}
+.uname-at{color:rgba(255,255,255,.28);font-size:1rem;margin-left:5px;direction:ltr;flex-shrink:0;font-weight:500}
+.cnt{font-size:.65rem;color:rgba(255,255,255,.18);text-align:left;direction:ltr;margin-top:4px}
+.hint{font-size:.65rem;color:rgba(255,255,255,.18);line-height:1.5;margin-top:4px}
+
+.terms{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:rgba(255,255,255,.05);border-radius:14px;border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:all .2s}
+.terms:hover{background:rgba(255,255,255,.07)}
+.terms-check{width:22px;height:22px;border-radius:7px;border:2px solid rgba(255,255,255,.18);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:1px}
+.terms-check.on{background:#34c759;border-color:#34c759;animation:checkPop .3s ease}
+.terms-check svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:3;opacity:0;transform:scale(0);transition:all .2s}
+.terms-check.on svg{opacity:1;transform:scale(1)}
+.terms-txt{font-size:.76rem;color:rgba(255,255,255,.45);line-height:1.7}
+.terms-txt a{color:#34c759;text-decoration:none;font-weight:600}
+
+.btn-main{width:100%;padding:16px;background:linear-gradient(135deg,#34c759,#059669);color:#fff;border:none;border-radius:28px;font-family:inherit;font-weight:700;font-size:.95rem;cursor:pointer;transition:transform .2s;position:relative;overflow:hidden;letter-spacing:.2px;box-shadow:0 8px 24px rgba(52,199,89,.25),inset 0 1px 0 rgba(255,255,255,.12)}
+.btn-main::after{content:'';position:absolute;top:0;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);animation:shine 2s ease-in-out infinite;transform:skewX(-15deg)}
+.btn-main:active{transform:scale(.97)}
+.btn-main:disabled{opacity:.25;cursor:not-allowed;transform:none}
+.btn-main:disabled::after{display:none}
+
+.loader{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;flex-direction:column;background:#06080f;overflow:hidden}
+.loader.show{display:flex}
+.ld-icon{position:relative;width:78px;height:78px;margin-bottom:18px}
+.ld-ring{position:absolute;border-radius:50%;border:2px solid transparent;will-change:transform}
+.ld-ring.a{inset:-12px;border-top-color:rgba(52,199,89,.5);border-right-color:rgba(52,199,89,.1);animation:ringS 3s linear infinite}
+.ld-ring.b{inset:-22px;border-bottom-color:rgba(102,126,234,.3);border-left-color:rgba(102,126,234,.06);animation:ringS 4s linear infinite reverse}
+.ld-ring.c{inset:-32px;border-top-color:rgba(160,120,255,.15);border-right-color:rgba(160,120,255,.03);animation:ringS 5s linear infinite}
+.ld-img{width:78px;height:78px;overflow:hidden;position:relative;z-index:2;background:transparent;animation:float 3s ease-in-out infinite}
+.ld-img img{width:100%;height:100%;object-fit:contain;display:block}
+.ld-title{color:rgba(255,255,255,.85);font-size:.9rem;font-weight:600;margin-bottom:4px;animation:up .4s ease .3s both}
+.ld-sub{color:rgba(255,255,255,.3);font-size:.68rem;animation:up .4s ease .5s both;margin-bottom:18px}
+.ld-prog{width:140px;height:3px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;animation:up .4s ease .7s both}
+.ld-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,#34c759,#667eea,#af52de);background-size:200% 100%;width:0;transition:width 2.5s cubic-bezier(.4,0,.2,1)}
+.ld-dots{display:flex;gap:4px;margin-top:14px;animation:up .4s ease .9s both}
+.ld-dots span{width:5px;height:5px;border-radius:50%;background:rgba(52,199,89,.4);animation:dotB 1.4s ease-in-out infinite}
+.ld-dots span:nth-child(2){animation-delay:.2s}
+.ld-dots span:nth-child(3){animation-delay:.4s}
+
+.toast{position:fixed;top:16px;left:50%;transform:translate(-50%,-130%);padding:12px 20px;border-radius:16px;font-size:.82rem;font-weight:600;z-index:200;pointer-events:none;transition:all .35s cubic-bezier(.68,-.55,.265,1.55);opacity:0;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.toast.s{background:#34c759;color:#fff}
+.toast.e{background:#ff3b30;color:#fff}
+</style>
+</head>
+<body>
+
+<div class="bg">
+<div class="bg-g1"></div>
+<div class="bg-g2"></div>
+<div class="bg-g3"></div>
+</div>
+<div class="px" id="px"></div>
+<div class="prog"><div class="prog-fill" id="progFill"></div></div>
+
+<div class="wrap" id="wrap">
+<div class="card">
+
+<div class="card-hdr">
+<div class="card-hdr-ic">
+<div class="card-hdr-img"><img src="https://i.ibb.co/TMgrGFTQ/1234.png" alt=""></div>
+</div>
+<div class="card-hdr-txt">
+<h1>به جمع ما بپیوندید</h1>
+<p>حساب کاربری بسازید و شروع کنید</p>
+</div>
+</div>
+
+<div class="attract">
+<div class="atr-badge"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(52,199,89,.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.74"/></svg>+۱۰,۰۰۰ کاربر</div>
+<div class="atr-badge"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(102,126,234,.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>امن و خصوصی</div>
+<div class="atr-badge"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(52,199,89,.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>رایگان</div>
+</div>
+
+<div class="av-sec">
+<div class="av-wrap" id="avBox">
+<div class="av-ring"></div>
+<div class="av-circle">
+<div class="av-ph" id="avPh"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>عکس</span></div>
+<img id="avImg" alt="">
+</div>
+<div class="av-cam" id="avCam"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+</div>
+</div>
+<input type="file" id="avIn" accept="image/*" style="display:none">
+
+<div class="fields">
+<div class="field-box" id="fName">
+<div class="field-head"><svg class="field-ic" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><label>نام</label></div>
+<input type="text" id="iName" placeholder="نام خود را وارد کنید" maxlength="30" autocomplete="off">
+<div class="msg-err" id="eName"></div>
+</div>
+
+<div class="field-box" id="fPhone">
+<div class="field-head"><svg class="field-ic" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><label>شماره تلفن</label></div>
+<input type="tel" id="iPhone" placeholder="09123456789" maxlength="11" inputmode="numeric" autocomplete="off">
+<div class="msg-err" id="ePhone"></div>
+</div>
+
+<div class="field-box" id="fUname">
+<div class="field-head"><svg class="field-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg><label>نام کاربری</label></div>
+<div class="uname-row"><span class="uname-at">@</span><input type="text" id="iUname" placeholder="username" maxlength="20" dir="ltr" autocomplete="off" style="flex:1"></div>
+<div class="msg-err" id="eUname"></div>
+<div class="msg-ok" id="oUname"></div>
+<div class="cnt" id="uCnt">0/20</div>
+<div class="hint">حروف کوچک انگلیسی، اعداد و _ حداقل ۳ کاراکتر</div>
+</div>
+
+<div class="terms" id="termsBox">
+<div class="terms-check" id="termsChk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+<div class="terms-txt"><a href="#" onclick="return false">شرایط استفاده</a> و <a href="#" onclick="return false">سیاست حریم خصوصی</a> را می‌پذیرم</div>
+</div>
+</div>
+
+<button class="btn-main" id="btnReg" disabled style="margin-top:12px">ثبت‌نام</button>
+</div>
+</div>
+
+<div class="loader" id="loader">
+<div class="ld-icon"><div class="ld-ring a"></div><div class="ld-ring b"></div><div class="ld-ring c"></div><div class="ld-img"><img src="https://i.ibb.co/TMgrGFTQ/1234.png" alt=""></div></div>
+<div class="ld-title">خوش آمدید</div>
+<div class="ld-sub" id="ldSub">در حال آماده‌سازی...</div>
+<div class="ld-prog"><div class="ld-bar" id="ldBar"></div></div>
+<div class="ld-dots"><span></span><span></span><span></span></div>
+</div>
+
+<div class="toast" id="toast"><span id="toastTx"></span></div>
+
+<script>
+function el(id){return document.getElementById(id)}
+
+/* صدا */
+var audioCtx=null;
+function initAudio(){if(!audioCtx)try{audioCtx=new(window.AudioContext||window.webkitAudioContext)}catch(e){}}
+function playClick(){try{initAudio();var o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.value=800;o.type='sine';g.gain.setValueAtTime(.05,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.08);o.start();o.stop(audioCtx.currentTime+.08)}catch(e){}}
+function playError(){try{initAudio();var o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.value=250;o.type='square';g.gain.setValueAtTime(.04,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.2);o.start();o.stop(audioCtx.currentTime+.2)}catch(e){}}
+function playSuccess(){try{initAudio();[[523,.1],[659,.1],[784,.15],[1047,.25]].forEach(function(n,i){var o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.value=n[0];o.type='sine';var t=audioCtx.currentTime+i*.12;g.gain.setValueAtTime(.07,t);g.gain.exponentialRampToValueAtTime(.001,t+n[1]);o.start(t);o.stop(t+n[1])})}catch(e){}}
+
+/* ذرات CSS */
+(function(){var c=el('px'),t=['a','b','c'];for(var i=0;i<20;i++){var d=document.createElement('div');d.className='pp '+t[i%3];d.style.left=Math.random()*100+'%';d.style.top=(30+Math.random()*70)+'%';d.style.animationDelay=(Math.random()*5)+'s';c.appendChild(d)}})();
+
+(function(){var f=el('wrap').querySelectorAll('.field-box,.terms');for(var i=0;i<f.length;i++){f[i].style.opacity='0';f[i].style.animation='up .4s ease '+(.06*i)+'s forwards'}})();
+
+el('avBox').addEventListener('click',function(){el('avIn').click();playClick()});
+el('avCam').addEventListener('click',function(e){e.stopPropagation();el('avIn').click();playClick()});
+el('avIn').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){el('avImg').src=ev.target.result;el('avImg').classList.add('show');el('avPh').style.display='none'};r.readAsDataURL(f)});
+
+var takenNames=['admin','user','test','sara','ali','mohammad','reza','mehdi','hossein','fateme','zahra','maryam','matcha'];
+var termsOK=false,unameTimer=null;
+
+el('termsBox').addEventListener('click',function(){termsOK=!termsOK;el('termsChk').classList.toggle('on',termsOK);playClick();if(navigator.vibrate)navigator.vibrate(15);validate()});
+el('iName').addEventListener('input',function(){playClick();validate()});
+el('iPhone').addEventListener('input',function(){this.value=this.value.replace(/[^0-9]/g,'');playClick();validate()});
+el('iUname').addEventListener('input',function(){el('uCnt').textContent=this.value.length+'/20';playClick();validate()});
+
+function validate(){
+var ok=true;
+var n=el('iName').value.trim(),fN=el('fName'),eN=el('eName');
+fN.classList.remove('has-error');eN.classList.remove('show');
+if(n.length>0&&n.length<2){eN.textContent='حداقل ۲ حرف';eN.classList.add('show');fN.classList.add('has-error');ok=false;playError()}
+
+var ph=el('iPhone').value.trim(),fP=el('fPhone'),eP=el('ePhone');
+fP.classList.remove('has-error','verified');eP.classList.remove('show');
+if(ph.length>0&&!/^09/.test(ph)){eP.textContent='با ۰۹ شروع شود';eP.classList.add('show');fP.classList.add('has-error');ok=false}
+else if(ph.length>0&&ph.length<11){eP.textContent='۱۱ رقم ('+ph.length+'/11)';eP.classList.add('show');fP.classList.add('has-error');ok=false}
+else if(ph.length>=11&&!/^09\d{9}$/.test(ph)){eP.textContent='معتبر نیست';eP.classList.add('show');fP.classList.add('has-error');ok=false;playError()}
+else if(/^09\d{9}$/.test(ph)){fP.classList.add('verified')}
+
+var u=el('iUname').value.trim(),fU=el('fUname'),eU=el('eUname'),oU=el('oUname');
+fU.classList.remove('has-error','verified');eU.classList.remove('show');oU.classList.remove('show');
+if(u.length>0&&u.length<3){eU.textContent='حداقل ۳';eU.classList.add('show');fU.classList.add('has-error');ok=false}
+else if(u.length>0&&!/^[a-z]/.test(u)){eU.textContent='حرف کوچک شروع شود';eU.classList.add('show');fU.classList.add('has-error');ok=false}
+else if(u.length>0&&!/^[a-z][a-z0-9_]*$/.test(u)){eU.textContent='فقط حروف کوچک و _';eU.classList.add('show');fU.classList.add('has-error');ok=false}
+else if(u.length>=3){ok=false;clearTimeout(unameTimer);unameTimer=setTimeout(function(){if(takenNames.indexOf(u.toLowerCase())>-1||u.toLowerCase()===(localStorage.getItem('reg_uname')||'')){eU.textContent='گرفته شده';eU.classList.add('show');fU.classList.add('has-error');oU.classList.remove('show');playError()}else{oU.textContent='✓ در دسترس';oU.classList.add('show');fU.classList.add('verified')}updateBtn()},350)}else if(u.length===0){ok=false}
+
+var p=0;if(n.length>=2)p+=25;if(/^09\d{9}$/.test(ph))p+=25;if(oU.classList.contains('show'))p+=25;if(termsOK)p+=25;
+el('progFill').style.width=p+'%';
+updateBtn();
+}
+
+function updateBtn(){var n=el('iName').value.trim(),ph=el('iPhone').value.trim(),u=el('iUname').value.trim();el('btnReg').disabled=!(n.length>=2&&/^09\d{9}$/.test(ph)&&/^[a-z][a-z0-9_]{2,19}$/.test(u)&&el('oUname').classList.contains('show')&&termsOK)}
+
+el('btnReg').addEventListener('click',function(){
+var n=el('iName').value.trim(),ph=el('iPhone').value.trim(),u=el('iUname').value.trim();
+if(!n||!/^09\d{9}$/.test(ph)||!/^[a-z][a-z0-9_]{2,19}$/.test(u)||!termsOK){toast('اطلاعات ناقص','e');playError();return}
+playSuccess();
+localStorage.setItem('ufn',n);localStorage.setItem('uph',ph);localStorage.setItem('uun',u);localStorage.setItem('uln','');localStorage.setItem('reg_uname',u);localStorage.setItem('regDone','true');
+el('wrap').style.display='none';el('progFill').style.width='100%';el('loader').classList.add('show');
+var msgs=['در حال آماده‌سازی...','ساخت حساب...','بارگذاری اطلاعات...','تقریباً آماده...','خوش آمدید!'];
+var mi=0;var msgI=setInterval(function(){mi++;if(mi<msgs.length)el('ldSub').textContent=msgs[mi];else clearInterval(msgI)},500);
+setTimeout(function(){el('ldBar').style.width='100%'},100);
+setTimeout(function(){toast('ثبت‌نام موفق!','s');clearInterval(msgI)},2600);
+setTimeout(function(){window.location.href='index.html'},3200);
+});
+
+function toast(msg,type){var t=el('toast');el('toastTx').textContent=msg;t.className='toast '+(type||'s');setTimeout(function(){t.classList.add('show')},50);setTimeout(function(){t.classList.remove('show')},2500)}
+</script>
+</body>
+</html>
